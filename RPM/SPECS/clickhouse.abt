@@ -1,0 +1,19 @@
+pkgName='clickhouse'
+specFile='clickhouse.spec'
+vcsModules[$vcsModule]=$modBuild
+
+function addRepos {
+
+  sudo bash -c "cat << EOF > /etc/yum.repos.d/mariadb.repo
+[mariadb]
+name=MariaDB
+baseurl=http://yum.mariadb.org/10.2/centos7-amd64
+gpgkey=https://yum.mariadb.org/RPM-GPG-KEY-MariaDB
+gpgcheck=1
+EOF"
+
+  execCmd "sudo yum install -y centos-release-scl"
+}
+
+stage[28]=addRepos
+stage[31]=rpmFetchSources

@@ -1,0 +1,13 @@
+[Unit]
+Description=ClickHouse server
+
+[Service]
+Type=forking
+PIDFile=/var/run/clickhouse/server.pid
+ExecStart=/usr/bin/clickhouse-server --daemon --pid-file=/var/run/clickhouse/server.pid --config-file=/etc/clickhouse-server/config.xml
+WorkingDirectory=/etc/clickhouse-server
+User=clickhouse
+Group=clickhouse
+
+[Install]
+WantedBy=multi-user.target
